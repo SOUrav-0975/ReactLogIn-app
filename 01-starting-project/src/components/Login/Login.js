@@ -13,8 +13,8 @@ const emailReducer = (state, action) => {
   }
   if (action.type === "INPUT_BLUR") {
     return {
-      value: state.value.includes("@"),
-      isValid: false
+      value: state.value,
+      isValid: state.value.includes('@')
     };
   }
   return { value: "", isValid: false };
@@ -28,8 +28,8 @@ const passwordReducer = (state, action) => {
   }
   if (action.type === "INPUT_BLUR") {
     return {
-      value: state.value.trim().length > 6,
-      isValid: false
+      value: state.value,
+      isValid: state.value.trim().length > 6,
     };
   }
   return { value: "", isValid: false };
@@ -55,7 +55,7 @@ const Login = (props) => {
       setFormIsValid(
         emailState.isValid && passwordState.isValid 
      );
-    },300)
+    },500)
  return () => {
     console.log('clean up')
     clearTimeout(identifier)
@@ -69,9 +69,7 @@ const Login = (props) => {
       type: "USER_INPUT",
       val: event.target.value,
     });
-    //  setFormIsValid(
-    //  emailState.isValid && passwordState.isValid 
-    // );
+    
   };
 
   const passwordChangeHandler = (event) => {
@@ -81,9 +79,7 @@ const Login = (props) => {
         val: event.target.value,
       
     })
-    //  setFormIsValid(
-    //     emailState.isValid && passwordState.isValid
-    // )
+    
   };
 
   
